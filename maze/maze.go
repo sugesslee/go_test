@@ -12,16 +12,15 @@ func readMaze(filename string) [][]int {
 	}
 
 	var row, col int
-	fmt.Fscanf(file, "%d %d", &row, &col)
+	_, _ = fmt.Fscanf(file, "%d %d", &row, &col)
 
 	maze := make([][]int, row)
 	for i := range maze {
 		maze[i] = make([]int, col)
 		for j := range maze[i] {
-			fmt.Fscanf(file, "%d", &maze[i][j])
+			_, _ = fmt.Fscanf(file, "%d", &maze[i][j])
 		}
 	}
-
 	return maze
 }
 
@@ -48,8 +47,7 @@ func (p point) at(grid [][]int) (int, bool) {
 	return grid[p.i][p.j], true
 }
 
-func walk(maze [][]int,
-	start, end point) [][]int {
+func walk(maze [][]int, start, end point) [][]int {
 	steps := make([][]int, len(maze))
 	for i := range steps {
 		steps[i] = make([]int, len(maze[i]))
@@ -83,8 +81,7 @@ func walk(maze [][]int,
 			}
 
 			curSteps, _ := cur.at(steps)
-			steps[next.i][next.j] =
-				curSteps + 1
+			steps[next.i][next.j] = curSteps + 1
 
 			Q = append(Q, next)
 		}
@@ -96,8 +93,7 @@ func walk(maze [][]int,
 func main() {
 	maze := readMaze("maze/maze.in")
 
-	steps := walk(maze, point{0, 0},
-		point{len(maze) - 1, len(maze[0]) - 1})
+	steps := walk(maze, point{0, 0}, point{len(maze) - 1, len(maze[0]) - 1})
 
 	for _, row := range steps {
 		for _, val := range row {

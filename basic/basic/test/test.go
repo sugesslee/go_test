@@ -11,9 +11,9 @@ import (
 func main() {
 	var s1 = [2]string{"hello", "world"}
 
-	s2 := [...] string{"1", "3", "5"}
+	s2 := [...]string{"1", "3", "5"}
 
-	var line1 [2] image.Point
+	var line1 [2]image.Point
 
 	fmt.Println(s1)
 	fmt.Println(s2)
@@ -69,6 +69,5 @@ func main() {
 		c1 <- [0]int{}
 	}()
 	<-c1
-
 
 }

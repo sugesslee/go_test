@@ -55,7 +55,7 @@ func (s SimpleHash) hash(value string) uint {
 	for i := 0; i < len(value); i++ {
 		result = result*s.seed + uint(value[i])
 	}
-	return uint(s.cap - 1) & result
+	return uint(s.cap-1) & result
 }
 
 func main() {
