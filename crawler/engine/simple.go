@@ -17,7 +17,11 @@ import (
  * @date 2019/10/27 10:57 AM
  * @since 1.0.0
  */
-func Run(seeds ...Request) {
+
+type SimpleEngine struct {
+}
+
+func (SimpleEngine) Run(seeds ...Request) {
 	var requests []Request
 
 	for _, r := range seeds {
@@ -28,19 +32,28 @@ func Run(seeds ...Request) {
 		r := requests[0]
 		requests = requests[1:]
 
-		log.Printf("Fetching %s", r.Url)
-		body, err := fetcher.Fetch(r.Url)
+		parserResult, err := worker(r)
 
 		if err != nil {
-			log.Printf("Fetcher: error fetching url %s: %v", r.Url, err)
 			continue
 		}
 
-		parserResult := r.ParserFunc(body)
 		requests = append(requests, parserResult.Request...)
 
 		for _, item := range parserResult.Items {
 			log.Printf("Got item %v", item)
 		}
 	}
+}
+
+func worker(r Request) (ParserResult, error) {
+	log.Printf("Fetching %s", r.Url)
+
+	body, err := fetcher.Fetch(r.Url)
+
+	if err != nil {
+		log.Printf("Fetcher: error fetching url %s: %v", r.Url, err)
+		return ParserResult{}, err
+	}
+	return r.ParserFunc(body), nil
 }
