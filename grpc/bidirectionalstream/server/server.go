@@ -1,10 +1,14 @@
 package main
 
 import (
+	"crypto/tls"
+	"crypto/x509"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	pb "gostudy/grpc/bidirectionalstream/proto"
 	"io"
+	"io/ioutil"
 	"log"
 	"net"
 	"strings"
@@ -49,7 +53,28 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	s := grpc.NewServer()
+	var tlsServerName = "server.io"
+	certificate, err := tls.LoadX509KeyPair("/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/client.crt", "/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/client.key")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	certPool := x509.NewCertPool()
+	ca, err := ioutil.ReadFile("/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/ca.crt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if ok := certPool.AppendCertsFromPEM(ca); !ok {
+		log.Fatal("failed to append ca certs")
+	}
+
+	creds := credentials.NewTLS(&tls.Config{
+		Certificates:       []tls.Certificate{certificate},
+		ServerName:         tlsServerName, // NOTE: this is required!
+		RootCAs:            certPool,
+	})
+
+	s := grpc.NewServer(grpc.Creds(creds))
 
 	pb.RegisterGreeterServer(s, &server{})
 

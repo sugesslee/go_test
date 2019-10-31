@@ -1,6 +1,10 @@
 package main
 
 import (
+	"crypto/tls"
+	"crypto/x509"
+	"google.golang.org/grpc/credentials"
+	"io/ioutil"
 	"log"
 	"net"
 	"strings"
@@ -43,11 +47,38 @@ func (s *server) GetCustomers(filter *pb.CustomerFilter, stream pb.Customer_GetC
 
 func main() {
 	lis, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
+	// 证书认证
+	//creds, err := credentials.NewServerTLSFromFile("/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/server.crt", "/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/server.key")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//if err != nil {
+	//	log.Fatalf("failed to listen: %v", err)
+	//}
 	// Creates a new gRPC server
-	s := grpc.NewServer()
+
+	// ca认证
+	certificate, err := tls.LoadX509KeyPair("/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/server.crt", "/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/server.key")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	certPool := x509.NewCertPool()
+	ca, err := ioutil.ReadFile("/Users/red/Desktop/workspace/project/go-project/gostudy/grpc/key/ca.crt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if ok := certPool.AppendCertsFromPEM(ca); !ok {
+		log.Fatal("failed to append certs")
+	}
+
+	creds := credentials.NewTLS(&tls.Config{
+		Certificates: []tls.Certificate{certificate},
+		ClientAuth:   tls.RequireAndVerifyClientCert, // NOTE: this is optional!
+		ClientCAs:    certPool,
+	})
+	s := grpc.NewServer(grpc.Creds(creds))
 	pb.RegisterCustomerServer(s, &server{})
-	s.Serve(lis)
+	_ = s.Serve(lis)
 }
