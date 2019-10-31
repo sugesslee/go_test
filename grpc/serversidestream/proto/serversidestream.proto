@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+// The greeter service definition
+service Greeter {
+    rpc LotsOfReplies(HelloRequest) returns (stream HelloReply){}
+}
+
+// The request message containing the user's name
+message HelloRequest {
+    string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+}
+
+
+

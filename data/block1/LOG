@@ -1,0 +1,20 @@
+=============== Oct 30, 2019 (CST) ===============
+10:41:47.230449 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:41:47.251206 db@open opening
+10:41:47.252619 version@stat F·[] S·0B[] Sc·[]
+10:41:47.269349 db@janitor F·2 G·0
+10:41:47.269391 db@open done T·18.144566ms
+10:41:47.270017 db@close closing
+10:41:47.270127 db@close done T·103.417µs
+=============== Oct 30, 2019 (CST) ===============
+10:43:32.639994 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:43:32.640350 version@stat F·[] S·0B[] Sc·[]
+10:43:32.640378 db@open opening
+10:43:32.640449 journal@recovery F·1
+10:43:32.640891 journal@recovery recovering @1
+10:43:32.654817 memdb@flush created L0@2 N·12 S·251B "1,v1":"moo-7,v7"
+10:43:32.655305 version@stat F·[1] S·251B[251B] Sc·[0.25]
+10:43:32.687621 db@janitor F·3 G·0
+10:43:32.687654 db@open done T·47.262882ms
+10:43:32.688078 db@close closing
+10:43:32.688185 db@close done T·105.289µs
