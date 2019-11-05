@@ -50,3 +50,9 @@ require (
 	google.golang.org/grpc v1.24.0
 	labix.org/v2/mgo v0.0.0-20140701140051-000000000287
 )
+
+replace (
+	golang.org/x/net => github.com/golang/net v0.0.0-20191021144547-ec77196f6094
+	golang.org/x/text => github.com/golang/text v0.3.2
+	google.golang.org/grpc => github.com/grpc/grpc-go v1.24.0
+)
