@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 /*
  *
@@ -15,11 +18,12 @@ import "fmt"
  * @since 1.0.0
  */
 func main() {
-	var age int = 10
+	//var age int = 10
 	//var a error
-
-	fmt.Println("test")
-	fmt.Println(age)
+	tm := time.Now().UnixNano()
+	//fmt.Println("test")
+	fmt.Println(tm)
+	fmt.Println(len(string(tm)))
 
 	//fmt.Println(a.Error())
 }
