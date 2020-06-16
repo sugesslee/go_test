@@ -28,6 +28,7 @@ require (
 	github.com/libp2p/go-libp2p-peerstore v0.1.0
 	github.com/libp2p/go-libp2p-pubsub v0.1.0 // indirect
 	github.com/libp2p/go-libp2p-swarm v0.1.0
+	github.com/mpatraw/gocurse v0.0.0-20151016042152-16f41dec53bc // indirect
 	github.com/multiformats/go-multiaddr v0.0.4
 	github.com/multiformats/go-multiaddr-net v0.0.1
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
