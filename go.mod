@@ -7,7 +7,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/garyburd/redigo v1.6.0
 	github.com/go-sql-driver/mysql v1.4.1
-	github.com/gogo/protobuf v1.2.1
+	github.com/gogo/protobuf v1.3.2
 	github.com/golang/protobuf v1.3.2
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/google/uuid v1.1.1
@@ -26,9 +26,7 @@ require (
 	github.com/libp2p/go-libp2p-net v0.1.0
 	github.com/libp2p/go-libp2p-peer v0.2.0
 	github.com/libp2p/go-libp2p-peerstore v0.1.0
-	github.com/libp2p/go-libp2p-pubsub v0.1.0 // indirect
 	github.com/libp2p/go-libp2p-swarm v0.1.0
-	github.com/mpatraw/gocurse v0.0.0-20151016042152-16f41dec53bc // indirect
 	github.com/multiformats/go-multiaddr v0.0.4
 	github.com/multiformats/go-multiaddr-net v0.0.1
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
@@ -36,16 +34,10 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644 // indirect
 	github.com/sirupsen/logrus v1.4.2
-	github.com/spaolacci/murmur3 v1.1.0
-	github.com/stretchr/objx v0.1.1
 	github.com/stretchr/testify v1.3.0
 	github.com/sykesm/zap-logfmt v0.0.1
 	github.com/syndtr/goleveldb v1.0.0
 	github.com/whyrusleeping/go-logging v0.0.0-20170515211332-0457bb6b88fc
-	github.com/whyrusleeping/go-smux-multiplex v3.0.16+incompatible // indirect
-	github.com/whyrusleeping/go-smux-multistream v2.0.2+incompatible // indirect
-	github.com/whyrusleeping/go-smux-yamux v2.0.9+incompatible // indirect
-	github.com/whyrusleeping/yamux v1.2.0 // indirect
 	github.com/willf/bitset v1.1.10
 	github.com/yanyiwu/gojieba v1.1.0
 	go.uber.org/multierr v1.3.0 // indirect
